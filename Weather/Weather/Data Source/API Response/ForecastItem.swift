@@ -23,6 +23,16 @@ struct ForecastItem: Decodable {
         case wind
     }
     
+    init(dateTimeStamp: Int, temperature: Double, minTemperature: Double, maxTemperature: Double, humidity: Int, weather: Weather? = nil, wind: Wind) {
+        self.dateTimeStamp = dateTimeStamp
+        self.temperature = temperature
+        self.minTemperature = minTemperature
+        self.maxTemperature = maxTemperature
+        self.humidity = humidity
+        self.weather = weather
+        self.wind = wind
+    }
+    
     init(from decoder: any Decoder) throws {
         let container: KeyedDecodingContainer<ForecastItem.CodingKeys> = try decoder.container(keyedBy: ForecastItem.CodingKeys.self)
         self.dateTimeStamp = try container.decode(Int.self, forKey: ForecastItem.CodingKeys.dateTimeStamp)

@@ -15,6 +15,11 @@ struct Weather: Decodable {
         case description
         case iconId = "icon"
     }
+    
+    init(description: String, iconId: String) {
+        self.description = description
+        self.iconId = iconId
+    }
 }
 
 extension Weather {

@@ -28,8 +28,8 @@ protocol SearchInteractorInputProtocol: AnyObject {
 }
 
 protocol SearchInteractorOutputProtocol: AnyObject {
-    func loadWeatherDataSuccess(_ response: WeatherDataResponse)
-    func loadWeatherDataFailure(error: Error)
+    func didLoadCurrentForecastData(_ forecastItem: ForecastItem, city: City)
+    func didGetFailure(error: Error)
 }
 
 protocol SearchRouterProtocol: AnyObject {

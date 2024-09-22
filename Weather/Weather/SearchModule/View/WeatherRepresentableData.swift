@@ -9,8 +9,6 @@ import Foundation
 
 struct WeatherRepresentableData {
     private(set) var temperature: String?
-    private(set) var minTemperature: String?
-    private(set) var maxTemperature: String?
     private(set) var cityName: String?
     private(set) var humidity: String?
     private(set) var windSpeed: String?
@@ -21,8 +19,6 @@ struct WeatherRepresentableData {
 
     init(forecastItem: ForecastItem, city: City) {
         temperature = "\(Int(forecastItem.temperature))°"
-        minTemperature = "L:\(Int(forecastItem.minTemperature))°"
-        maxTemperature = "H:\(Int(forecastItem.maxTemperature))°"
         cityName = city.name
         numberFormatter.numberStyle = .percent
         humidity = numberFormatter.string(for: Double(forecastItem.humidity) / 100 )

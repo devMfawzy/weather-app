@@ -11,7 +11,6 @@ class SearchPresenter {
     private weak var view: SearchViewProtocol?
     private var interactor: SearchInteractorInputProtocol?
     private var router: SearchRouterProtocol?
-    private var weatherDataResponse = WeatherDataResponse()
     
     init(router: SearchRouterProtocol, interactor: SearchInteractorInputProtocol) {
         self.router = router
@@ -36,28 +35,25 @@ extension SearchPresenter: SearchPresenterProtocol {
 }
 
 extension SearchPresenter: SearchInteractorOutputProtocol {
-    func loadWeatherDataSuccess(_ response: WeatherDataResponse) {
+    func didLoadCurrentForecastData(_ forecastItem: ForecastItem, city: City) {
         DispatchQueue.main.async { [weak self] in
             self?.view?.stopLoadig()
         }
-        guard let currentForecastItem = response.currentForecastItem else { return }
         let weatherRepresentableData = WeatherRepresentableData(
-            forecastItem: currentForecastItem, city: response.city)
+            forecastItem: forecastItem, city: city)
         DispatchQueue.main.async { [weak self] in
             self?.view?.load(weatherData: weatherRepresentableData)
             self?.view?.showWeatherData()
         }
-        weatherDataResponse = response
     }
     
-    func loadWeatherDataFailure(error: any Error) {
+    func didGetFailure(error: Error) {
         DispatchQueue.main.async { [weak self] in
-            self?.view?.hideWeatherData()
-            self?.view?.stopLoadig()
-            if let error = error as? ErrorResponse {
-                self?.view?.showFailureMessage(error.message)
-            } else {
-                self?.view?.showFailureMessage(error.localizedDescription)
+            guard let self else { return }
+            self.view?.hideWeatherData()
+            self.view?.stopLoadig()
+            if let error = error as? URLError {
+                self.view?.showFailureMessage(error.localizedDescription)
             }
         }
     }

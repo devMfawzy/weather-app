@@ -9,9 +9,9 @@ import Foundation
 
 struct City: Decodable {
     let name: String
-    let countryCode: String
+    let countryCode: String?
     
-    init(name: String = "", countryCode: String = "") {
+    init(name: String = "", countryCode: String? = nil) {
         self.name = name
         self.countryCode = countryCode
     }

@@ -11,7 +11,8 @@ public enum SearchModule {
     public static func createModule() -> UIViewController {
         let router = SearchRouter()
         let service = WeatherService()
-        let interactor = SearchInteractor(weatherService: service)
+        let store = WeatherDataStore()
+        let interactor = SearchInteractor(weatherService: service, weatherDataStore: store)
         let presenter = SearchPresenter(router: router, interactor: interactor)
         let view = SearchView(presenter: presenter)
         router.view = view

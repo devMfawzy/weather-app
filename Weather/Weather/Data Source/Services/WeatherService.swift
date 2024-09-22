@@ -10,7 +10,7 @@ import Foundation
 class WeatherService: WeatherServiceProtocol {
     private let session = URLSession.shared
     
-    func fetchWeatherData(cityName: String) async throws -> WeatherDataResponse {
+    func fetchWeatherData(cityName: String) async throws -> WeatherData {
         guard let urlRequest = fetchWeatherRequest(cityName: cityName) else {
             throw URLError(.badURL)
         }
@@ -18,7 +18,7 @@ class WeatherService: WeatherServiceProtocol {
         let decoder = JSONDecoder()
         if let response = response as? HTTPURLResponse, response.statusCode == 200  {
             do {
-                return try decoder.decode(WeatherDataResponse.self, from: data)
+                return try decoder.decode(WeatherData.self, from: data)
             } catch {
                 throw URLError(.cannotDecodeContentData)
             }
