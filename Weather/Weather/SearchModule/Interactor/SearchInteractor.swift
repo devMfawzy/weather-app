@@ -22,7 +22,7 @@ class SearchInteractor: SearchInteractorInputProtocol {
         configureSearchTextHandling()
     }
     
-    func fetchWeatherData(cityName: String) {
+    func getWeatherData(cityName: String) {
         weatherDataStore.getWeatherObject(cityName: cityName) { [weak self] result in
             guard let self else { return }
             switch result {

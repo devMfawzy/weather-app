@@ -30,7 +30,7 @@ extension SearchPresenter: SearchPresenterProtocol {
             self.view?.hideWeatherData()
             self.view?.startLoadig()
         }
-        interactor?.fetchWeatherData(cityName: text)
+        interactor?.getWeatherData(cityName: text)
     }
 }
 

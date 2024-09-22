@@ -24,7 +24,7 @@ protocol SearchPresenterProtocol: AnyObject {
 }
 
 protocol SearchInteractorInputProtocol: AnyObject {
-    func fetchWeatherData(cityName: String)
+    func getWeatherData(cityName: String)
 }
 
 protocol SearchInteractorOutputProtocol: AnyObject {
