@@ -23,7 +23,13 @@ struct ForecastItem: Decodable {
         case wind
     }
     
-    init(dateTimeStamp: Int, temperature: Double, minTemperature: Double, maxTemperature: Double, humidity: Int, weather: Weather? = nil, wind: Wind) {
+    init(dateTimeStamp: Int = 0,
+         temperature: Double = 0,
+         minTemperature: Double = 0,
+         maxTemperature: Double = 0,
+         humidity: Int = 0,
+         weather: Weather? = nil,
+         wind: Wind = Wind()) {
         self.dateTimeStamp = dateTimeStamp
         self.temperature = temperature
         self.minTemperature = minTemperature

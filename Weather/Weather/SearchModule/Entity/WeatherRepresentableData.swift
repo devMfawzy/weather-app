@@ -22,7 +22,7 @@ struct WeatherRepresentableData {
         cityName = city.name
         numberFormatter.numberStyle = .percent
         humidity = numberFormatter.string(for: Double(forecastItem.humidity) / 100 )
-        let windSpeedStr = Int(forecastItem.wind.speed * 3.6)
+        let windSpeedStr = Int(forecastItem.wind.speed * 3.6) // convert meeter/second to km/h
         windSpeed = "\(windSpeedStr) km/h"
         weatherDescription = forecastItem.weather?.description
         weatherIcon = forecastItem.weather?.iconURL

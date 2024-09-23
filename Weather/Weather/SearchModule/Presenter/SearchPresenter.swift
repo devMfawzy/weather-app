@@ -52,8 +52,8 @@ extension SearchPresenter: SearchInteractorOutputProtocol {
             guard let self else { return }
             self.view?.hideWeatherData()
             self.view?.stopLoadig()
-            if let error = error as? URLError {
-                self.view?.showFailureMessage(error.localizedDescription)
+            if let error = error as? ErrorResponse, error.representable {
+                self.view?.showFailureMessage(error.message)
             }
         }
     }

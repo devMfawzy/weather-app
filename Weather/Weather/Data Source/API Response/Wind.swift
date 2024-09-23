@@ -9,4 +9,8 @@ import Foundation
 
 struct Wind: Decodable {
     let speed: Double
+    
+    init(speed: Double = 0) {
+        self.speed = speed
+    }
 }

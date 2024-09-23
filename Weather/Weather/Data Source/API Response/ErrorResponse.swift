@@ -9,6 +9,7 @@ import Foundation
 
 struct ErrorResponse: Error , Decodable {
     let message: String
+    var representable = false
     
     var localizedDescription: String {
         message

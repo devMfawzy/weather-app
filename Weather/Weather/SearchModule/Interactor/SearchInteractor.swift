@@ -42,6 +42,8 @@ class SearchInteractor: SearchInteractorInputProtocol {
                 let weatherData = try await self.weatherService.fetchWeatherData(cityName: text)
                 self.handleWeatherData(weatherData)
                 weatherDataStore.addWeather(object: weatherData.storeObject)
+            } catch let error as URLError {
+                self.output?.didGetFailure(error: ErrorResponse(message: error.localizedDescription, representable: true))
             } catch {
                 self.output?.didGetFailure(error: error)
             }
